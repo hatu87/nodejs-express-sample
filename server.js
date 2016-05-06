@@ -13,25 +13,8 @@ app.engine('ect', renderer.render);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// models
-var Calculator = {
-  calculate: function(a, b, operator) {
-    var result;
 
-    switch(operator) {
-      case "+":
-       result = a + b;
-       break;
-      case "-":
-        result = a - b;
-        break;
-      default:
-        throw new Error('Unknown Operator.');
-    }
-
-    return result;
-  }
-};
+var Calculator = require('./app/models/Calculator');
 
 // controllers
 var HelloController = {
