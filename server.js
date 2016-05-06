@@ -13,14 +13,7 @@ app.engine('ect', renderer.render);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/hello', function(req, res) {
-  res.render('hello', { name: req.query.name });
-});
-
-app.get('/calculator', function(req, res) {
-  res.render('calculator');
-});
-
+// models
 var Calculator = {
   calculate: function(a, b, operator) {
     var result;
@@ -39,8 +32,19 @@ var Calculator = {
     return result;
   }
 };
-app.post('/calculator', function(req, res) {
-  console.log(req.body);
+
+// controllers
+var HelloController = {
+  index: function(req, res) {
+    res.render('hello', { name: req.query.name });
+  }
+}
+var CalculatorController = {
+  index: function(req, res) {
+    res.render('calculator');
+  },
+  calculate: function(req, res) {
+    console.log(req.body);
   var a = parseInt(req.body.a);
   var b = parseInt(req.body.b);
   var operator = req.body.operator;
@@ -61,7 +65,13 @@ app.post('/calculator', function(req, res) {
   }
 
   res.render('calculator', { result: result, numA: a, numB: b, message: message });
-});
+  }
+};
+
+// routes
+app.get('/hello', HelloController.index);
+app.get('/calculator', CalculatorController.index);
+app.post('/calculator', CalculatorController.calculate);
 
 var port = 3000;
 app.listen(port, function() {
