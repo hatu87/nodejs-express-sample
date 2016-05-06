@@ -9,11 +9,14 @@
         <form method="POST">
             a: <input name="a" value="<%= @numA %>"/><br/>
             b: <input name="b" value="<%= @numB %>"/><br/>
-            <button type="submit">
+            <button type="submit" name="operator" value="+">
                 Add
             </button>
-            <button type="submit">
+            <button type="submit" name="operator" value="-">
                 Substract
+            </button>
+            <button type="submit" name="operator" >
+                Multiply
             </button>
         </form>
         <h1>

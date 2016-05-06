@@ -25,6 +25,8 @@ app.post('/calculator', function(req, res) {
   console.log(req.body);
   var a = parseInt(req.body.a);
   var b = parseInt(req.body.b);
+  var operator = req.body.operator;
+
   var message = {};
   var result;
 
@@ -32,7 +34,17 @@ app.post('/calculator', function(req, res) {
     message.error = "a or b is not number. Please try again with valid numbers.";
   } else {
     message.success = "Calculation successfully.";
-    result = a + b;
+
+    switch(operator) {
+      case "+":
+       result = a + b;
+       break;
+      case "-":
+        result = a - b;
+        break;
+      default:
+        message.error = "Unknown operator.";
+    }
   }
 
   res.render('calculator', { result: result, numA: a, numB: b, message: message });
