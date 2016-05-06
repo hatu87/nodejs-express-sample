@@ -2,6 +2,10 @@
     <head>
     </head>
     <body>
+        <p>
+
+            <%= @message && ( @message.error || @message.success ) %>
+        </p>
         <form method="POST">
             a: <input name="a" value="<%= @numA %>"/><br/>
             b: <input name="b" value="<%= @numB %>"/><br/>

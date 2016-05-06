@@ -25,9 +25,17 @@ app.post('/calculator', function(req, res) {
   console.log(req.body);
   var a = parseInt(req.body.a);
   var b = parseInt(req.body.b);
+  var message = {};
+  var result;
 
-  var result = a + b;
-  res.render('calculator', { result: result, numA: a, numB: b });
+  if (isNaN(a) || isNaN(b)) {
+    message.error = "a or b is not number. Please try again with valid numbers.";
+  } else {
+    message.success = "Calculation successfully.";
+    result = a + b;
+  }
+
+  res.render('calculator', { result: result, numA: a, numB: b, message: message });
 });
 
 var port = 3000;
