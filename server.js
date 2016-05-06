@@ -10,6 +10,7 @@ var renderer = ect({
 
 app.set('view engine', 'ect');
 app.engine('ect', renderer.render);
+app.set('views', './app/views');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
