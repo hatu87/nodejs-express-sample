@@ -21,6 +21,24 @@ app.get('/calculator', function(req, res) {
   res.render('calculator');
 });
 
+var Calculator = {
+  calculate: function(a, b, operator) {
+    var result;
+
+    switch(operator) {
+      case "+":
+       result = a + b;
+       break;
+      case "-":
+        result = a - b;
+        break;
+      default:
+        throw new Error('Unknown Operator.');
+    }
+
+    return result;
+  }
+};
 app.post('/calculator', function(req, res) {
   console.log(req.body);
   var a = parseInt(req.body.a);
@@ -35,15 +53,10 @@ app.post('/calculator', function(req, res) {
   } else {
     message.success = "Calculation successfully.";
 
-    switch(operator) {
-      case "+":
-       result = a + b;
-       break;
-      case "-":
-        result = a - b;
-        break;
-      default:
-        message.error = "Unknown operator.";
+    try {
+      result = Calculator.calculate(a, b, operator);
+    } catch(e) {
+      message.error = e.message;
     }
   }
 
