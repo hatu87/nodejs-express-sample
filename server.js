@@ -14,14 +14,7 @@ app.set('views', './app/views');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// controllers
-var helloCtrl = require('./app/controllers/HelloController');
-var calculatorCtrl = require('./app/controllers/CalculatorController');
-
-// routes
-app.get('/hello', helloCtrl.index);
-app.get('/calculator', calculatorCtrl.index);
-app.post('/calculator', calculatorCtrl.calculate);
+require('./config/routes')(app);
 
 var port = 3000;
 app.listen(port, function() {
