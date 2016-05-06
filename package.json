@@ -4,7 +4,7 @@
   "description": "This is my tutorial in Nodejs for Distributed Course.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon --watch views --watch server.js -e ect,js server.js"
   },
   "keywords": [
     "tutorial",
