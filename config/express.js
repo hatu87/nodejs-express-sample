@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser');
 var ect = require('ect');
+var express = require('express');
 
 var configExpress = function(app) {
 
@@ -13,6 +14,8 @@ var configExpress = function(app) {
   app.use(bodyParser.urlencoded({
     extended: true
   }));
+
+  app.use(express.static('public'));
 }
 
 module.exports = configExpress;
