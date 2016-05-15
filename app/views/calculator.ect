@@ -1,8 +1,5 @@
-<html>
-    <head>
-    </head>
-    <body>
-        <p>
+<% extend '../app/views/layout' %>
+        <p class="alert alert-success">
 
             <%= @message && ( @message.error || @message.success ) %>
         </p>
@@ -22,5 +19,3 @@
         <h1>
             Result: <%= @result %>
         </h1>
-    </body>
-</html>
