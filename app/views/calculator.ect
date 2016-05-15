@@ -1,18 +1,22 @@
-<% extend '../app/views/layout' %>
-        <p class="alert alert-success">
+<% extend 'layout' %>
+  <% if @message : %>
+    <% if @message.success : %>
+      <p class="alert alert-success"><%= @message.success %></p>
+    <% else : %>
+      <p class="alert alert-danger"><%= @message.error %></p>
+    <% end %>
+  <% end %>
 
-            <%= @message && ( @message.error || @message.success ) %>
-        </p>
         <form method="POST">
             a: <input name="a" value="<%= @numA %>"/><br/>
             b: <input name="b" value="<%= @numB %>"/><br/>
-            <button type="submit" name="operator" value="+">
+            <button type="submit" name="operator" value="+" class="btn btn-primary">
                 Add
             </button>
-            <button type="submit" name="operator" value="-">
+            <button type="submit" name="operator" value="-" class="btn btn-info">
                 Substract
             </button>
-            <button type="submit" name="operator" >
+            <button type="submit" name="operator" class="btn btn-danger">
                 Multiply
             </button>
         </form>

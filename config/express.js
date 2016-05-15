@@ -5,7 +5,7 @@ var express = require('express');
 var configExpress = function(app) {
 
   var renderer = ect({
-    root: __dirname + 'views',
+    root: './app/views',
     ext: '.ect'
   });
   app.set('view engine', 'ect');
