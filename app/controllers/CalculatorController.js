@@ -2,7 +2,7 @@ var Calculator = require('../models/Calculator');
 
 var CalculatorController = {
   index: function(req, res) {
-    res.render('calculator');
+    res.render('calculator/calculator');
   },
   calculate: function(req, res) {
     console.log(req.body);
@@ -25,7 +25,7 @@ var CalculatorController = {
     }
   }
 
-  res.render('calculator', { result: result, numA: a, numB: b, message: message });
+  res.render('calculator/calculator', { result: result, numA: a, numB: b, message: message });
   }
 };
 

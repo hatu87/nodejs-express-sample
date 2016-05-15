@@ -1,6 +1,6 @@
 var HelloController = {
   index: function(req, res) {
-    res.render('hello', { name: req.query.name });
+    res.render('hello/hello', { name: req.query.name });
   }
 }
 
