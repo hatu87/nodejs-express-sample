@@ -1,0 +1,68 @@
+<% extend 'layout' %>
+
+  Normal:
+  <table class="table">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>command</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% for user in @users : %>
+      <tr id='user-<%= user.id %>'>
+        <td>
+          <%= user.id %>
+        </td>
+        <td>
+          <%= user.name %>
+        </td>
+        <td>
+          <a href="#" class="btn btn-info">Edit</a>
+          <a href="#" class="btn btn-danger" onclick="usersPage.deleteUser(<%= user.id %>)">Remove</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+
+  AJAX:
+  <table class="table">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>command</th>
+  </tr>
+  </thead>
+  <tbody id="usersList">
+  </tbody>
+  </table>
+
+  <script type='text/javascript'>
+    var usersPage = (function() {
+      $.ajax({
+        method: 'get',
+        url: '/api/users'
+      }).done(function(data) {
+        $(data).each(function(index) {
+        var user = data[index];
+        var tr = '<tr><td>' + user.id + '</td><td>' + user.name + '</td><td><a href="#" class="btn btn-danger">Delete</a></td></tr>';
+
+          $("#usersList").append(tr);
+        });
+      });
+
+      return {
+        deleteUser: function(id) {
+          $.ajax({
+            method: 'delete',
+            url: '/api/users/' + id
+          }).done(function(data){
+            $('#user-'+ id).remove();
+          });
+        }
+      };
+    })();
+  </script>
